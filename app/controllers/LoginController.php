@@ -2,22 +2,26 @@
 
 namespace App\Controllers;
 
-class LoginController
+use Core\Controller;
+
+class LoginController extends Controller
 {
-  public function index() {
-    include __PATH__.'\app\views\LoginView.php';
+  public function index()
+  {
+    $this->loadView('LoginView');
   }
 
-  public function loginto() {
+  public function loginto()
+  {
     echo 'oto logando';
   }
 
-  public function register() {
-
+  public function register()
+  {
     echo '<pre>';
     var_dump($_POST);
     echo '</pre>';
-    
-    include __PATH__.'\app\views\RegisterView.php';
+
+    $this->loadView('RegisterView');
   }
 }
