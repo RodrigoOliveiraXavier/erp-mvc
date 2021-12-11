@@ -22,8 +22,3 @@ session_start();
 //Salva as configurações da aplicação em uma variavel global
 global $application;
 $application = parse_ini_file(APPLICATION_FILE, true);
-
-//Inclui a classe que contem as rotas da aplicação
-require __DIR__ . '/core/routes.php';
-$request = new Route\Request;
-resolve($request);

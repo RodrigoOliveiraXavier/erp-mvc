@@ -17,9 +17,6 @@
       "App\\Controllers\\": "app/controllers/",
       "Route\\": "router/",
       "App\\Services\\": "app/services/"
-    },
-    "files": [
-      "app/helpers/helper_routes.php"
-    ]
+    }
   }
 }
