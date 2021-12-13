@@ -10,5 +10,5 @@
     <input type='password' name='password' /><br /><br />
 
     <input type='submit' value='Cadastrar' />
-    <a href=<?=route('login.index')?>>Voltar</a>
+    <a>Voltar</a>
 </form>
