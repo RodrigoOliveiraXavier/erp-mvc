@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Connection;
+
 abstract class ActiveRecord
 {
   private $content;
@@ -98,14 +100,12 @@ abstract class ActiveRecord
       }
       $sql = "INSERT INTO {$this->table} (" . implode(', ', array_keys($newContent)) . ') VALUES (' . implode(',', array_values($newContent)) . ');';
     }
-    /**
-     * Ajustar conexão com o banco utilizando a classe correta
-     */
-    // if ($connection = Connection::getInstance('./configdb.ini')) {
-    //   return $connection->exec($sql);
-    // } else {
-    //   throw new Exception("Não há conexão com Banco de dados!");
-    // }
+
+    if ($connection = Connection::open()) {
+      return $connection->exec($sql);
+    } else {
+      throw new \Exception("Não há conexão com Banco de dados!");
+    }
   }
 
   public static function find($parameter)
@@ -118,21 +118,17 @@ abstract class ActiveRecord
     $sql .= ' WHERE ' . (is_null($idField) ? 'id' : $idField);
     $sql .= " = {$parameter} ;";
 
-    /**
-     * Ajustar conexão com o banco utilizando a classe correta
-     */
-    // if ($connection = Connection::getInstance('./configdb.ini')) {
-    //   $result = $connection->query($sql);
+    if ($connection = Connection::open()) {
+      $result = $connection->query($sql);
 
-    //   if ($result) {
+      if ($result) {
+        $newObject = $result->fetchObject(get_called_class());
+      }
 
-    //     $newObject = $result->fetchObject(get_called_class());
-    //   }
-
-    //   return $newObject;
-    // } else {
-    //   throw new Exception("Não há conexão com Banco de dados!");
-    // }
+      return $newObject;
+    } else {
+      throw new \Exception("Não há conexão com Banco de dados!");
+    }
   }
 
   public function delete()
@@ -141,14 +137,11 @@ abstract class ActiveRecord
 
       $sql = "DELETE FROM {$this->table} WHERE {$this->idField} = {$this->content[$this->idField]};";
 
-      /**
-       * Ajustar conexão com o banco utilizando a classe correta
-       */
-      // if ($connection = Connection::getInstance('./configdb.ini')) {
-      //   return $connection->exec($sql);
-      // } else {
-      //   throw new Exception("Não há conexão com Banco de dados!");
-      // }
+      if ($connection = Connection::open()) {
+        return $connection->exec($sql);
+      } else {
+        throw new \Exception("Não há conexão com Banco de dados!");
+      }
     }
   }
 
@@ -162,15 +155,12 @@ abstract class ActiveRecord
     $sql .= ($offset > 0) ? " OFFSET {$offset}" : "";
     $sql .= ';';
 
-    /**
-     * Ajustar conexão com o banco utilizando a classe correta
-     */
-    // if ($connection = Connection::getInstance('./configdb.ini')) {
-    //   $result = $connection->query($sql);
-    //   return $result->fetchAll(PDO::FETCH_CLASS, get_called_class());
-    // } else {
-    //   throw new Exception("Não há conexão com Banco de dados!");
-    // }
+    if ($connection = Connection::open()) {
+      $result = $connection->query($sql);
+      return $result->fetchAll(\PDO::FETCH_CLASS, get_called_class());
+    } else {
+      throw new \Exception("Não há conexão com Banco de dados!");
+    }
   }
 
   public static function findFisrt(string $filter = '')
@@ -186,17 +176,14 @@ abstract class ActiveRecord
     $sql .= ($filter !== '') ? " WHERE {$filter}" : "";
     $sql .= ';';
 
-    /**
-     * Ajustar conexão com o banco utilizando a classe correta
-     */
-    // if (self::$connection) {
-    //   $q = self::$connection->prepare($sql);
-    //   $q->execute();
-    //   $a = $q->fetch(PDO::FETCH_ASSOC);
-    //   return (int) $a['t'];
-    // } else {
-    //   throw new Exception("Não há conexão com Banco de dados!");
-    // }
+    if ($connection = Connection::open()) {
+      $q = $connection->prepare($sql);
+      $q->execute();
+      $a = $q->fetch(\PDO::FETCH_ASSOC);
+      return (int) $a['t'];
+    } else {
+      throw new \Exception("Não há conexão com Banco de dados!");
+    }
   }
 
   private function format($value)
