@@ -8,7 +8,11 @@ class LoginController extends Controller
 {
   public function index()
   {
-    $this->loadView('LoginView');
+    // echo "<pre>";
+    // var_dump($_POST);
+    // echo '</pre>';
+
+    $this->render('LoginView');
   }
 
   public function loginto()
@@ -18,10 +22,6 @@ class LoginController extends Controller
 
   public function register()
   {
-    echo '<pre>';
-    var_dump($_POST);
-    echo '</pre>';
-
-    $this->loadView('RegisterView');
+    $this->render('RegisterView');
   }
 }

@@ -1,23 +1,25 @@
 <?php
-
 namespace Route;
 
-require_once __PATH__ . "/router/RouteSwitch.php";
+use Route\RouterBase;
 
-class Router extends RouteSwitch
-{
-  /**
-   * Redireciona o usuario para a rota passada
-   * @param string $request_uri
-   */
-  public function run(string $request_uri)
-  {
-    $route = substr($request_uri, 1);
+class Router extends RouterBase {
+    public $routes;
 
-    if ($route === '') {
-      $this->login();
-    } else {
-      $this->$route();
+    public function get($endpoint, $trigger) {
+        $this->routes['get'][$endpoint] = $trigger;
     }
-  }
+
+    public function post($endpoint, $trigger) {
+        $this->routes['post'][$endpoint] = $trigger;
+    }
+
+    public function put($endpoint, $trigger) {
+        $this->routes['put'][$endpoint] = $trigger;
+    }
+
+    public function delete($endpoint, $trigger) {
+        $this->routes['delete'][$endpoint] = $trigger;
+    }
+
 }

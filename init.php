@@ -22,6 +22,10 @@ define('ENVIRONMENT', 'development');
 define('__PATH__', __DIR__);
 //Define a classe de autoload do PHP
 define('AUTOLOAD_CLASS', __DIR__ . '/vendor/autoload.php');
+//Define o controller de erro
+define('ERROR_CONTROLLER', APPLICATION['general']['error_controller']);
+//Define a função padrao
+define('DEFAULT_ACTION', APPLICATION['general']['default_action']);
 
 //Caso ambiente de desenvolviento define as configurações de erros
 if (ENVIRONMENT == 'development') {
