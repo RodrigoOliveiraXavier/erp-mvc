@@ -2,6 +2,16 @@
 //Define as configurações de erros
 error_reporting(E_ALL);
 ini_set('display_errors', true);
+
+//Valida se os arquivos de log do PHP estão criados
+if (!is_dir('tmp/')) {
+  mkdir('tmp/');
+}
+if (!is_file('tmp/php_errors.log')) {
+  fopen('tmp/php_errors.log', 'w');
+}
+
+//Seta o arquivo de log do php
 ini_set('error_log', 'tmp/php_errors.log');
 
 //Define as constantes
