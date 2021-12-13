@@ -1,0 +1,9 @@
+# Ativação do RewriteEngine para gerenciar as rotas
+RewriteEngine On
+
+# Se o diretório ou arquivos digitados na URL não existirem, seguir a RewriteRule
+RewriteCond %{REQUEST_FILENAME} !-d       
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Redireciona todos os requests para o index.php 
+RewriteRule ^(.+)$ index.php [QSA,L]

@@ -14,7 +14,7 @@ ini_set('error_log', 'tmp/php_errors.log');
 define('APPLICATION', parse_ini_file(__DIR__ . '/app/config/application.ini', true));
 //Define o ambiente da aplicação
 define('ENVIRONMENT', 'development');
-//Define o caminha da pasta raiz da aplicação (apenas para apoio no código)
+//Define o caminho da pasta raiz da aplicação (apenas para apoio no código)
 define('__PATH__', __DIR__);
 //Define a classe de autoload do PHP
 define('AUTOLOAD_CLASS', __DIR__ . '/vendor/autoload.php');
@@ -32,3 +32,15 @@ require_once(__DIR__ . '/app/config/config.php');
 
 //Inicia a sessão do usuario
 session_start();
+
+//Chama a classe de rotas
+require_once __PATH__ . '/router/Router.php';
+
+//Define a URI base da aplicação
+define('URI_BASE', str_replace('index.php','',str_replace(' ', '%20', $_SERVER['PHP_SELF'])));
+
+//Ajusta a URI para redirecionar
+$request_uri = '/'.str_replace(URI_BASE, '', $_SERVER['REQUEST_URI']);
+
+$router = new Route\Router;
+$router->run($request_uri);

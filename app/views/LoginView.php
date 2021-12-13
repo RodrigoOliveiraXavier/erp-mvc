@@ -7,5 +7,5 @@
   <input type='password' name='password' /><br /><br />
 
   <input type='submit' name='Entrar' />
-  <a href=<?=route('login.register')?>>Cadastre-se</a>
+  <a>Cadastre-se</a>
 </form>
