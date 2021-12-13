@@ -8,20 +8,17 @@ class LoginController extends Controller
 {
   public function index()
   {
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo '</pre>';
+    $email = 'teste@teste';
+    $senha = 'teste';
 
-    $this->render('LoginView');
+    $this->render('LoginView', [
+      'email' => $email,
+      'senha' => $senha
+    ]);
   }
 
   public function loginto()
   {
     echo 'oto logando';
-  }
-
-  public function register()
-  {
-    $this->render('RegisterView');
   }
 }

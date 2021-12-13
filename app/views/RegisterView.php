@@ -10,5 +10,5 @@
     <input type='password' name='password' /><br /><br />
 
     <input type='submit' value='Cadastrar' />
-    <a>Voltar</a>
+    <a href=<?=URI_BASE?>>Voltar</a>
 </form>

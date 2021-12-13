@@ -4,7 +4,12 @@ namespace Route;
 use Route\Request;
 
 class RouterBase {
-
+    
+    /**
+     * Executa as rotas instanciadas no arquivo de rotas e faz o redirecionamento
+     * para a rota passada na URL
+     * @param $routes 
+     */
     public function run($routes) {
         $method = Request::getMethod();
         $url = Request::getUrl();
@@ -50,7 +55,6 @@ class RouterBase {
 
         $controller = "\App\Controllers\\$controller";
         $definedController = new $controller();
-
         $definedController->$action($args);
     }
     
