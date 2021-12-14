@@ -3,7 +3,7 @@ $control = new Core\Controller();
 $control->renderPartial('header');
 ?>
 
-<h2>REGISTRO</h2>
+<h2>REGISTRAR</h2>
 <form method="POST" action=<?= URI_BASE . 'register' ?>>
     <label for="register-name">Usuário:</label><br />
     <input type="text" id="register-name" name="name" value=<?= $name ?? null ?> ><br /><br />
