@@ -3,7 +3,7 @@
 require_once 'init.php';
 
 //Inicia a sessão do usuario
-session_start();
+new App\Services\Session();
 
 //Define a URI base da aplicação
 define('URI_BASE', str_replace('index.php', '', str_replace(' ', '%20', $_SERVER['PHP_SELF'])));

@@ -3,8 +3,14 @@ $control = new Core\Controller();
 $control->renderPartial('header');
 ?>
 
+<head>
+  <h1>Sistema ERP - MVC</h1>
+
+  <hr />
+</head>
+
 <h2>LOGIN</h2>
-<form method="POST" action=<?=URI_BASE?>>
+<form method="POST" action=<?= URI_BASE ?>>
   <label for="login-name">Usuário:</label><br>
   <input type="text" id="login-name" name="name" value=<?= $name ?? null ?>><br /><br />
 

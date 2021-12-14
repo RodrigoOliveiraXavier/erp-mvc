@@ -4,13 +4,17 @@ namespace App\Controllers;
 
 use Core\Controller;
 use App\Models\Users;
+use App\Services\Session;
 
 class LoginController extends Controller
 {
+  /**
+   * Renderiza a tela de login
+   */
   public function index()
   {
     //Redireciona o usuário para o home caso ja tenha logado recentemente
-    if (isset($_SESSION['logged']) && $_SESSION['logged']) {
+    if (Session::getValue('logged') !== null && Session::getValue('logged')) {
       header('Location: ' . URI_BASE . 'home');
     }
 
@@ -18,6 +22,9 @@ class LoginController extends Controller
     $this->render('LoginView');
   }
 
+  /**
+   * Executa o login o usuário
+   */
   public function logInto()
   {
     //Pega os dados enviado por requisição POST
@@ -33,11 +40,22 @@ class LoginController extends Controller
     if (empty($users)) {
       echo "<h3 style='color:red'>Usuario não encontrado, verifique a escrita ou <a href=" . URI_BASE . 'register' . ">cadastre um novo usuário!</a></h3>";
     } else {
-      $_SESSION['logged'] = true;
+      Session::setValue('logged', true);
       header('Location: ' . URI_BASE . 'home');
     }
 
     //Renderiza o form de login
     $this->render('LoginView', $data);
+  }
+
+  /**
+   * Executa o logout do usuário
+   */
+  public function logout()
+  {
+    //Destroi a sessão do usuário
+    Session::destroySession();
+    //Redireciona o usuário para a tela de login
+    header('Location: ' . URI_BASE);
   }
 }

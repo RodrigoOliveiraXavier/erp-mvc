@@ -4,11 +4,17 @@ namespace App\Controllers;
 
 use Core\Controller;
 use App\Models\Users;
+use App\Services\Session;
 
 class RegisterController extends Controller
 {
   public function index()
   {
+    //Redireciona o usuário para o home caso ja tenha logado recentemente
+    if (Session::getValue('logged') !== null && Session::getValue('logged')) {
+      header('Location: ' . URI_BASE . 'home');
+    }
+
     //Renderiza o form de registro
     $this->render('RegisterView');
   }
@@ -42,7 +48,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        $_SESSION['logged'] = true;
+        Session::setValue('logged', true);
         echo "<h3 style='color:green'>Usuário cadastrado com sucesso! <a href=" . URI_BASE . ">Acesse o sistema aqui!</a></h3>";
       }
     }
