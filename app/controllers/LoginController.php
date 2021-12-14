@@ -19,7 +19,7 @@ class LoginController extends Controller
       'pass' => $_POST['password']
     ];
 
-    $users  = Users::all("name = '".$data['name']."' and password = '".$data['pass']."'");
+    $users  = Users::all("name = '".$data['name']."' and password = '".md5($data['pass'])."'");
 
     if (empty($users)) {
       echo "<h3 style='color:red'>Usuario não encontrado, verifique a escrita ou <a href=".URI_BASE.'register'.">cadastre um novo usuário!</a></h3>";
