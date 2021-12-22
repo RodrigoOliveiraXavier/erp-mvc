@@ -1,17 +1,19 @@
 <?php
-$control = new Core\Controller();
-$control->renderPartial('header');
+Core\Application::renderPartial('header');
 ?>
 
 <head>
     <link rel="stylesheet" href=<?= 'template/' . APPLICATION['general']['template'] . '/css/LoginStyle.css' ?> />
 </head>
 
-<div id="login-container">
-    <div id='login-container-form'>
+<div id="register-container">
+    <div id="register-container-content">
+        <iframe src=<?= URI_BASE . 'content-login' ?> frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <div id='register-container-form'>
         <h2>REGISTRAR</h2>
         <hr />
-        <form method="POST" action=<?= URI_BASE . 'register' ?>>
+        <form id="register-form" method="POST" action=<?= URI_BASE . 'register' ?>>
             <div class="form-group">
                 <label for="register-name">Usuário:</label><br />
                 <input type="text" id="register-name" name="name" placeholder="Nome do usuário" value=<?= $name ?? null ?>><br /><br />
@@ -30,5 +32,5 @@ $control->renderPartial('header');
 </div>
 
 <?php
-$control->renderPartial('footer');
+Core\Application::renderPartial('footer');
 ?>

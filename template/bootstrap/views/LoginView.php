@@ -1,6 +1,5 @@
 <?php
-$control = new Core\Controller();
-$control->renderPartial('header');
+Core\Application::renderPartial('header');
 ?>
 
 <head>
@@ -30,5 +29,5 @@ $control->renderPartial('header');
 </div>
 
 <?php
-$control->renderPartial('footer');
+Core\Application::renderPartial('footer');
 ?>
