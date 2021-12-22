@@ -1,0 +1,34 @@
+body {
+  background: gray;
+  overflow-x: hidden;
+}
+
+body,
+text,
+h1,
+h2,
+h3,
+h4,
+label {
+  color: black;
+}
+
+input {
+  border-radius: 12px;
+}
+
+/*Footer*/
+footer {
+  background-color: #666;
+  padding-top: 5em;
+  padding-bottom: 40px;
+  border-top: 5px solid #3381F3;
+}
+
+footer h2, footer p, footer a, footer span {
+  color: #d1d1d1;
+}
+
+footer h2 {
+  font-weight: 400;
+}

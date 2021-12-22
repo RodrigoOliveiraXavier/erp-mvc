@@ -1,0 +1,24 @@
+#login-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #999;
+}
+
+#login-container-form {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  right: 10px;
+  bottom: 10px;
+  background-color: red;
+  padding: 50px;
+  text-align: center;
+}
+
+#login-container-content {
+  background-color: green;
+  width: 70%;
+  height: 100%;
+  padding: 50px;
+}

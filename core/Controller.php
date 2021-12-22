@@ -2,7 +2,9 @@
 
 namespace Core;
 
-class Controller
+use Core\Application;
+
+class Controller extends Application
 {
 
     /**
@@ -27,31 +29,5 @@ class Controller
         $base .= URI_BASE;
 
         return $base;
-    }
-
-    /**
-     * Carrega a view passada
-     */
-    public function render($viewName, $viewData = [])
-    {
-        if (file_exists(__PATH__ . '/app/views/' . $viewName . '.php')) {
-            extract($viewData);
-            // $render = fn($vN, $vD = []) => $this->renderPartial($vN, $vD);
-            // $base = $this->getBaseUrl();
-            require __PATH__ . '/app/views/' . $viewName . '.php';
-        }
-    }
-    
-    /**
-     * Carrega o include do template selecionado pelo usuario
-     */
-    public function renderPartial($includeName, $viewData = [])
-    {
-        if (file_exists(__PATH__ . '/template/' . APPLICATION['general']['template'] . '/includes/' . $includeName . '.php')) {
-            extract($viewData);
-            // $render = fn ($vN, $vD = []) => $this->renderPartial($vN, $vD);
-            // $base = $this->getBaseUrl();
-            require __PATH__ . '/template/' . APPLICATION['general']['template'] . '/includes/' . $includeName . '.php';
-        }
     }
 }
