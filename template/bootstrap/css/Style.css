@@ -22,13 +22,37 @@ footer {
   background-color: #666;
   padding-top: 5em;
   padding-bottom: 40px;
-  border-top: 5px solid #3381F3;
+  border-top: 5px solid #3381f3;
 }
 
-footer h2, footer p, footer a, footer span {
+footer h2,
+footer p,
+footer a,
+footer span {
   color: #d1d1d1;
 }
 
 footer h2 {
   font-weight: 400;
+}
+
+/*Scroll*/
+body {
+  overflow: overlay;
+}
+*::-webkit-scrollbar {
+  /*define a largura da scrollbar*/
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  /*define a cor de fundo da scrollbar*/
+  background: rgba(0, 0, 0, 0);
+}
+*::-webkit-scrollbar-thumb {
+  /*define a cor da scrollbar*/
+  background-color: #4c5255;
+  /*define o arredondamento da borda do scroll*/
+  border-radius: 20px;
+  /*define a borda e a cor da borda da scrollbar*/
+  border: 1px solid #cdcdcd;
 }
