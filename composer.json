@@ -1,15 +1,19 @@
 {
   "name": "milladm71/so-mais-um-teste",
-  "description": "So mais um teste para praticar a codificacao",
+  "description": "So mais um teste para praticar a codificação",
+  "version": "v1.0.0-dev",
+  "type": "project",
+  "license": "MIT",
   "authors": [
     {
       "name": "RodrigoOliveiraXavier",
-      "email": "rodrigo.oliveira.xavier151@gmail.com"
+      "email": "rodrigo.oliveira.xavier151@gmail.com",
+      "role": "Developer"
     }
   ],
   "require": {
     "php": "^7.3|^8.0",
-    "twbs/bootstrap": "4.1.3"
+    "twbs/bootstrap": "4.2.1"
   },
   "autoload": {
     "psr-4": {
